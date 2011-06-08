@@ -1,19 +1,37 @@
-= mapleseed
+= Mapleseed
 
-Description goes here.
+Mapleseed is a simple {Whirl}[http://www.bigzaphod.org/whirl/] interpreter written in Ruby.
+Yes, I know I've been on a bit of an esoteric language interpreter kick.  They're fun little toys.
 
-== Contributing to mapleseed
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+== Usage
 
-== Copyright
+To install Mapleseed:
+	
+	% gem install mapleseed
+	
+Once Mapleseed is installed, you can use it to interpret your Whirl code.  
 
-Copyright (c) 2011 'Chris. See LICENSE.txt for
-further details.
+You can pass code directly into it, using the -c parameter.
+	
+	% mapleseed -c "011000011110000111111"
+	
+Or, you can specify a file with the -f parameter:
 
+	% mapleseed -f test.wrl
+	
+You can also start an interactive interpreter by running Mapleseed without any parameters
+	
+	% mapleseed
+	
+The list of options is viewable from the command line using the -h parameter.
+
+	% mapleseed -h
+
+== Things That Might Get Done Eventually
+
+* REPL
+* File minimizer (turn whirl code into binary files and vice versa)
+
+== History
+
+* 0.1.0 - Initial release.  Allows running code passed in or from a file.

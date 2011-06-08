@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require File.expand_path(File.join(File.dirname(__FILE__), "..", "lib", "mapleseed.rb"))
+
+options = { :mode => :repl }
+op = OptionParser.new do |x|
+	x.banner = "mapleseed <options>"
+	x.separator "\nUsing no options will start the interactive interpreter."
+	x.on("-f <file_path>", String, "Open a given file") do |f|
+		options[:mode] = :file
+		options[:file] = f
+	end
+	x.on("-c <code>", String, "Perform the given code") do |c|
+		options[:mode] = :code
+		options[:code] = c
+	end
+	x.on("-h", "Show this message") do
+		puts op
+		exit
+	end
+end
+begin
+	op.parse!(ARGV)
+rescue
+	puts "Could not parse command line arguments."
+end
+
+ms = Mapleseed::Base.new
+case options[:mode]
+#when :repl
+#	puts "Starting interactive interpreter..."
+#	ms.repl
+when :file
+	puts "Running file..."
+	ms.load_file(options[:file])
+when :code
+	puts "Interpreting code..."
+	ms.run(options[:code])
+end

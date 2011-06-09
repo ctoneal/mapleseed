@@ -4,7 +4,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), "ring.rb"))
 module Mapleseed
 	#interprets Whirl code
 	class Interpreter
-		attr_reader :memory
+		attr_reader :memory, :op_ring, :math_ring
 		attr_accessor :memory_position, :program_position,
 							:input_stream, :output_stream
 		

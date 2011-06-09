@@ -2,6 +2,8 @@ module Mapleseed
 	# base class for whirl command rings
 	class Ring
 		
+		attr_reader :position, :value, :direction, :commands
+		
 		# initialize the ring
 		def initialize(interpreter)
 			@position = 0

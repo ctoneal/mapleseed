@@ -28,8 +28,8 @@ end
 ms = Mapleseed::Base.new
 case options[:mode]
 when :repl
-#	puts "Starting interactive interpreter..."
-#	ms.repl
+	puts "Starting interactive interpreter..."
+	ms.repl
 when :file
 	puts "Running file..."
 	ms.load_file(options[:file])

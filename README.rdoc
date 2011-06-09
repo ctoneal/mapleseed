@@ -26,13 +26,25 @@ You can also start an interactive interpreter by running Mapleseed without any p
 The list of options is viewable from the command line using the -h parameter.
 
 	% mapleseed -h
+	
+And if you'd like to use Whirl code inside of Ruby, that can be done:
 
+	require 'rubygems'
+	require 'mapleseed'
+	
+	ms = Mapleseed::Interpreter.new
+	ms.run("011000001111000011111000001111
+	00001111100000111100001111100000110010
+	00001100111110001110001111000110011100
+	00000001111100010001111100110011111000
+	10001100")
+	
 == Things That Might Get Done Eventually
 
-* REPL
-* File minimizer (turn whirl code into binary files and vice versa)
-* Unit testing
+* File minimizer (turn whirl code into tiny binary files and vice versa)
+* Testing
 
 == History
 
+* 0.1.1 - Added REPL
 * 0.1.0 - Initial release.  Allows running code passed in or from a file.

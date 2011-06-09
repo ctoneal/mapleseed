@@ -19,10 +19,10 @@ module Mapleseed
 		# rotate the ring in the given direction
 		def rotate
 			@position += @direction
-			if @position == 12
+			if @position == @commands.length
 				@position = 0
 			elsif @position == -1
-				@position = 11
+				@position = @commands.length - 1
 			end
 		end
 		
@@ -44,10 +44,12 @@ module Mapleseed
 		
 		# do nothing
 		def noop
+			#...
 		end
 		
 		# exit the program
 		def exit
+			throw :quit
 		end
 		
 		# set the ring value to 1
@@ -72,24 +74,24 @@ module Mapleseed
 		
 		# change location in the program
 		def p_add
-			pos = 0
-			if @value > 0
-				pos = @value - 1
+			@interpreter.program_position += @value - 1
+			if @interpreter.program_position < 0
+				@interpreter.program_position = 0
 			end
-			@interpreter.program_position = pos
 		end
 		
 		# change location in memory
 		def d_add
-			pos = 0
-			if @value > 0
-				pos = @value
-			end
-			@interpreter.memory_position = pos
+			@interpreter.memory_position += @value
 		end
 		
 		# logical AND
 		def logic
+			if @interpreter.memory.get(@interpreter.memory_position) != 0 and @value != 0
+				@value = 1
+			else
+				@value = 0
+			end
 		end
 		
 		# if value in memory is not 0, add ring value to program position
@@ -103,7 +105,10 @@ module Mapleseed
 		# print memory value as an integer
 		def int_io
 			if @value == 0
+				str = @interpreter.input_stream.gets.chomp
+				@interpreter.memory.set(@interpreter.memory_position, str.to_i)
 			else
+				@interpreter.output_stream.print @interpreter.memory.get(@interpreter.memory_position)
 			end
 		end
 		
@@ -111,7 +116,10 @@ module Mapleseed
 		# print memory value as an character
 		def asc_io
 			if @value == 0
+				str = @interpreter.input_stream.getc
+				@interpreter.memory.set(@interpreter.memory_position, str)
 			else
+				@interpreter.output_stream.putc @interpreter.memory.get(@interpreter.memory_position)
 			end
 		end
 	end
@@ -127,50 +135,78 @@ module Mapleseed
 		
 		# do nothing
 		def noop
+			#...
 		end
 		
 		# set the ring value to the current memory value
 		def load
+			@value = @interpreter.memory.get(@interpreter.memory_position)
 		end
 		
 		# set the current value in memory to the ring value
 		def store
+			@interpreter.memory.set(@interpreter.memory_position, @value)
 		end
 		
 		# set ring value += memory value
 		def add
+			@value += @interpreter.memory.get(@interpreter.memory_position)
 		end
 		
 		# set ring value *= memory value
 		def mult
+			@value *= @interpreter.memory.get(@interpreter.memory_position)
 		end
 		
 		# set ring value /= memory value
 		def div
+			@value /= @interpreter.memory.get(@interpreter.memory_position)
 		end
 		
 		# set ring value to 0
 		def zero
+			@value = 0
 		end
 		
 		# if ring value is less than memory value, set value to 1, otherwise 0
 		def lt
+			if @value < @interpreter.memory.get(@interpreter.memory_position) 
+				@value = 1
+			else
+				@value = 0
+			end
 		end
 		
 		# if ring value is greater than memory value, set value to 1, otherwise 0
 		def gt
+			if @value > @interpreter.memory.get(@interpreter.memory_position) 
+				@value = 1
+			else
+				@value = 0
+			end
 		end
 		
 		# if ring value is equal to memory value, set value to 1, otherwise 0
 		def equal
+			if @value == @interpreter.memory.get(@interpreter.memory_position) 
+				@value = 1
+			else
+				@value = 0
+			end
 		end
 		
 		# if ring value is not 0, set value to 1, otherwise 0
 		def not
+			if @value == 0
+				@value = 1
+			else
+				@value = 0
+			end
 		end
 		
 		# inverse ring value
 		def neg
+			@value *= -1
 		end
 	end
 end

@@ -27,7 +27,7 @@ end
 
 ms = Mapleseed::Base.new
 case options[:mode]
-#when :repl
+when :repl
 #	puts "Starting interactive interpreter..."
 #	ms.repl
 when :file

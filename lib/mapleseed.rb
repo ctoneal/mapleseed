@@ -15,13 +15,14 @@ module Mapleseed
 		end
 		
 		# load code from a file and run it
-		def load_file(path)
+		def load_file(file_path)
 			code = File.open(file_path) { |f| f.read }
 			run(code)
 		end
 		
 		# interactive read-evaluate-print loop
 		def repl
+			throw "Unimplemented"
 		end
 	end
 end

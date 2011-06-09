@@ -31,6 +31,7 @@ The list of options is viewable from the command line using the -h parameter.
 
 * REPL
 * File minimizer (turn whirl code into binary files and vice versa)
+* Unit testing
 
 == History
 

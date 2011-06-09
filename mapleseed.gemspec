@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "lib/mapleseed/interpreter.rb",
     "lib/mapleseed/memory.rb",
     "lib/mapleseed/ring.rb",
+    "mapleseed.gemspec",
     "test/helper.rb",
     "test/test_mapleseed.rb"
   ]

@@ -6,39 +6,39 @@ Yes, I know I've been on a bit of an esoteric language interpreter kick.  They'r
 == Usage
 
 To install Mapleseed:
-	
-	% gem install mapleseed
-	
+    
+    % gem install mapleseed
+    
 Once Mapleseed is installed, you can use it to interpret your Whirl code.  
 
 You can pass code directly into it, using the -c parameter.
-	
-	% mapleseed -c "011000011110000111111"
-	
+    
+    % mapleseed -c "011000011110000111111"
+    
 Or, you can specify a file with the -f parameter:
 
-	% mapleseed -f test.wrl
-	
+    % mapleseed -f test.wrl
+    
 You can also start an interactive interpreter by running Mapleseed without any parameters
-	
-	% mapleseed
-	
+    
+    % mapleseed
+    
 The list of options is viewable from the command line using the -h parameter.
 
-	% mapleseed -h
-	
+    % mapleseed -h
+    
 And if you'd like to use Whirl code inside of Ruby, that can be done:
 
-	require 'rubygems'
-	require 'mapleseed'
-	
-	ms = Mapleseed::Interpreter.new
-	ms.run("011000001111000011111000001111
-	00001111100000111100001111100000110010
-	00001100111110001110001111000110011100
-	00000001111100010001111100110011111000
-	10001100")
-	
+    require 'rubygems'
+    require 'mapleseed'
+    
+    ms = Mapleseed::Interpreter.new
+    ms.run("011000001111000011111000001111
+    00001111100000111100001111100000110010
+    00001100111110001110001111000110011100
+    00000001111100010001111100110011111000
+    10001100")
+    
 == Things That Might Get Done Eventually
 
 * File minimizer (turn whirl code into tiny binary files and vice versa)
